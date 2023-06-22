@@ -7,9 +7,21 @@
     Hi {{ user.username }}
 
     {% if user.is_staff %}
-        <p>Admin</p>
+        <p><b>Admin dashboard</b></p>
+        <ul>
+            <li><a href="{% url 'signup' %}">Create staff/admin account</a></li>
+            <li><a href="#">Create new room</a></li>
+            <li><a href="#">Modify room record</a></li>
+            <li><a href="#">Delete room record</a></li>
+            <li><a href="#">View room availability</a></li>
+        </ul>
+        
+        
+        
+        
+        
     {% else %}
-        <p>Staff </p>
+        <p><b>Staff dashboard</b></p>
     {% endif %}
 
     <p><a href="{% url 'logout' %}">Log Out</a></p>
