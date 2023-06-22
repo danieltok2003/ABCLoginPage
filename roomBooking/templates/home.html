@@ -5,6 +5,13 @@
 {% block content %}
 {% if user.is_authenticated %}
     Hi {{ user.username }}
+
+    {% if user.is_staff %}
+        <p>Admin</p>
+    {% else %}
+        <p>Staff </p>
+    {% endif %}
+
     <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
     <p>You are not logged in</p>
