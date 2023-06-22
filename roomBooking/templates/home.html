@@ -10,14 +10,11 @@
         <p><b>Admin dashboard</b></p>
         <ul>
             <li><a href="{% url 'signup' %}">Create staff/admin account</a></li>
-            <li><a href="#">Create new room</a></li>
-            <li><a href="#">Modify room record</a></li>
-            <li><a href="#">Delete room record</a></li>
+            <!-- <li><a href="#">Create new room</a></li> -->
+            <li><a href="{% url 'createRoom' %}">Modify room record</a></li>
+            <li><a href="{% url 'deleteRoom' %}">Delete room record</a></li>
             <li><a href="#">View room availability</a></li>
         </ul>
-        
-        
-        
         
         
     {% else %}

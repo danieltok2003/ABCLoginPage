@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Room{% endblock %}
+
+{% block content %}
+    <h2>Delete Room</h2>
+    <form method="POST" action="{% url 'deleteRoom' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <select id="playerselect" name="pitcher" class="player-dropdown">
+            {% for option in roomOptions %}
+                <option value="{{ option.id}}">{{ option.roomName }}</option>
+            {% endfor %}
+            <input type="submit" value="Search"/>
+            </select>
+        <button type="submit">Delete Room</button>
+    </form>
+{% endblock %}
