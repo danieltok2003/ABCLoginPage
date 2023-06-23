@@ -4,26 +4,105 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    Hi {{ user.username }}
+<style>
+    a {
+        text-decoration:none;
+        color:var(--grey)
+    }
+    .container {
+        border-radius:2px;
+    }
+
+    .boxHeaderFont {
+        font-size:22px;
+    }
+
+    .boxColor {
+        background-color:var(--paleBlue);
+    }
+    button {
+        background-color:var(--palePink);
+        border:2px solid var(--grey);
+        border-radius:5px;
+        width:100%;
+    
+    }
+    button a {
+        display:block;
+        width:100%;
+    }
+    .button {
+        background-color:var(--palePink);
+        border:2px solid var(--grey);
+        border-radius:5px;
+        width:100%;
+    }
+    button a {
+        color:var(--grey);
+    }
+
+</style>
+<div class="container">
+    <br>
+    <p><b>Welcome, {{ user.username }} </b></p>
 
     {% if user.is_staff %}
-        <p><b>Admin dashboard</b></p>
-        <ul>
+        <div class="container py-2 boxColor">
+            <p class="boxHeaderFont"><b class="boxHeaderFont">Admin dashboard</b></p>
+            <p> Allows admins to create new accounts, manage rooms and view availability. </p>
+        </div>
+        <div class="container">
+            <div class="row py-4">  
+                <!-- ACCOUNT HANDLING -->
+                <div class="col boxColor py-2">
+
+                    <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
+                </div>
+                
+                <!-- ROOM HANDLING -->
+                <div class="col boxColor py-2">
+                    <button><a href="{% url 'createRoom' %}">Create room </a></button>
+                </div>
+          </div>
+        </div>
+
+          <!-- ROOM AVAILABILITY -->
+            <div class="container px-4 boxColor">
+                <div class="row py-2">
+                    <button><a href="#">Change room appointments</a></button>
+                </div>
+                
+            </div>
+
+        
+        <!-- <ul>
             <li><a href="{% url 'signup' %}">Create staff/admin account</a></li>
-            <!-- <li><a href="#">Create new room</a></li> -->
             <li><a href="{% url 'createRoom' %}">Modify room record</a></li>
             <li><a href="{% url 'deleteRoom' %}">Delete room record</a></li>
             <li><a href="#">View room availability</a></li>
-        </ul>
+        </ul> -->
         
         
     {% else %}
         <p><b>Staff dashboard</b></p>
     {% endif %}
 
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <br>
+    <a href="{% url 'logout' %}" style="background-color:var(--palePink); padding:8px; border:2px solid var(--grey); border-radius:5px;">Log Out</a>
+
+        
+    </div>
+    
+    
+    
+        
+    </div>
+
+
 {% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Log In</a>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+
+</div>
 {% endif %}
 {% endblock %}
