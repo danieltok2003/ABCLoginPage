@@ -3,10 +3,31 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
+<style>
+    html,body {
+        height:100%;
+        margin:0 auto;
+    }
+    #loginBox {
+        min-height:100%;
+        margin:auto;
+        width:fit-content;
+        margin-top:50px;
+        padding:50px;
+        background-color:var(--paleBlue);
+        border-radius:15px
+        
+    }
+</style>
+<body>
+    {% include 'header.html' %}
+    <div id="loginBox">
+        <h2>Log In</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" style="margin:auto">Log In</button>
+            </form>
+    </div>
+</body>
 {% endblock %}

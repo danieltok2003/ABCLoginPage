@@ -3,7 +3,7 @@ from .models import Room
 class CreateRoomForm(ModelForm):
     class Meta:
         model = Room
-        fields = ["roomName"]
+        fields = ["roomName", "capacity"]
 
 class DeleteRoomForm(ModelForm):
     class Meta:
