@@ -10,7 +10,7 @@
         color:var(--grey)
     }
     .container {
-        border-radius:2px;
+        border-radius:5px;
     }
 
     .boxHeaderFont {
@@ -40,6 +40,13 @@
     button a {
         color:var(--grey);
     }
+    .headerNumbers {
+        font-size:50px;
+        font-weight:bold;
+    }
+    .headerText {
+        font-weight:bold;
+    }
 
 </style>
 <div class="container">
@@ -51,17 +58,57 @@
             <p class="boxHeaderFont"><b class="boxHeaderFont">Admin dashboard</b></p>
             <p> Allows admins to create new accounts, manage rooms and view availability. </p>
         </div>
+
+        <div class="container" style="text-align:center">
+            <div class="row pt-4 headerNumbers">  
+                <div class="col boxColor py-2">
+                    0
+                </div>
+                <div class="col boxColor py-2">
+                    0
+                </div>
+                <div class="col boxColor py-2">
+                    0
+                </div>
+          </div>
+
+          <div class="row headerText">  
+            <!-- ACCOUNT HANDLING -->
+            <div class="col boxColor py-2">
+                Bookings made
+                <!-- {% for user in users %}
+                    <p> {{user.username}}</p>
+                {% endfor %} -->
+            </div>
+                
+            <!-- ROOM HANDLING -->
+            <div class="col boxColor py-2">
+                Meetings happening now
+                
+            </div>
+            <div class="col boxColor py-2">
+                Rooms available now
+                
+
+            </div>
+
+      </div>
+        </div>
+
         <div class="container">
             <div class="row py-4">  
                 <!-- ACCOUNT HANDLING -->
                 <div class="col boxColor py-2">
-
                     <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
+                    <!-- {% for user in users %}
+                        <p> {{user.username}}</p>
+                    {% endfor %} -->
                 </div>
                 
                 <!-- ROOM HANDLING -->
                 <div class="col boxColor py-2">
                     <button><a href="{% url 'createRoom' %}">Create room </a></button>
+    
                 </div>
           </div>
         </div>
@@ -88,7 +135,7 @@
     {% endif %}
 
     <br>
-    <a href="{% url 'logout' %}" style="background-color:var(--palePink); padding:8px; border:2px solid var(--grey); border-radius:5px;">Log Out</a>
+    <a href="{% url 'logout' %}" style="background-color:var(--palePink); padding:5px; border:2px solid var(--grey); border-radius:5px;">Log Out</a>
 
         
     </div>
