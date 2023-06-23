@@ -20,13 +20,16 @@
     }
 </style>
 <body>
-    {% include 'header.html' %}
-    <div id="loginBox">
-        <h2>Log In</h2>
+    
+    <div id="loginBox" style="color: var(--grey)">
+        <h2>ABC Room Booking Portal</h2>
+        <br>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" style="margin:auto">Log In</button>
+                <div style="width:100%; text-align:center">
+                <button type="submit" class="btn" style="background-color:var(--palePink); border:2px solid var(--grey)">Log In</button>
+                </div>
             </form>
     </div>
 </body>
