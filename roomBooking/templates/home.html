@@ -10,7 +10,7 @@
         color:var(--grey)
     }
     .container {
-        border-radius:5px;
+        border-radius:5px
     }
 
     .boxHeaderFont {
@@ -100,15 +100,18 @@
                 <!-- ACCOUNT HANDLING -->
                 <div class="col boxColor py-2">
                     <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
-                    <!-- {% for user in users %}
-                        <p> {{user.username}}</p>
-                    {% endfor %} -->
+                    {% for user in users %}
+                        <p> {{user.username}} </p>
+                    {% endfor %}
                 </div>
                 
                 <!-- ROOM HANDLING -->
                 <div class="col boxColor py-2">
                     <button><a href="{% url 'createRoom' %}">Create room </a></button>
-    
+                 
+                    {% for room in rooms %}
+                        <p>{{room.roomName}} </p>
+                    {% endfor %}
                 </div>
           </div>
         </div>
@@ -121,13 +124,7 @@
                 
             </div>
 
-        
-        <!-- <ul>
-            <li><a href="{% url 'signup' %}">Create staff/admin account</a></li>
-            <li><a href="{% url 'createRoom' %}">Modify room record</a></li>
-            <li><a href="{% url 'deleteRoom' %}">Delete room record</a></li>
-            <li><a href="#">View room availability</a></li>
-        </ul> -->
+    
         
         
     {% else %}

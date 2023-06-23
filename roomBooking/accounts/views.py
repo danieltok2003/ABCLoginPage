@@ -14,4 +14,5 @@ class SignUpView(generic.CreateView):
 def showUsers(request):
     data = User.objects.all()
     users = {'users': data}
+    print(users)
     return render(request, "home.html", users)

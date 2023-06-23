@@ -12,6 +12,13 @@ def createRoomView(request):
         # TODO - VALIDATE IF UNIQUE ROOM NAME INPUTTED
     return render(request, 'createRoom.html', {'form' : CreateRoomForm})
 
+def getRooms(request):
+    data = Room.objects.filter()
+    context = {'rooms': data}
+    
+    return render(request, 'home.html', context)
+
+
 def deleteRoomView(request):
     roomOptions = Room.objects.filter()
     context = {'roomOptions': roomOptions}
