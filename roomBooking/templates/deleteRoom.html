@@ -3,13 +3,11 @@
 {% block title %}Delete Room{% endblock %}
 
 {% block content %}
-    <h2>Delete Room</h2>
-    <form method="POST" action="{% url 'deleteRoom' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for option in roomOptions %}
-            <p href="{% url 'home' %}">{{ option.roomName }}</p>
-            <button type="submit">Delete Room</button>
-        {% endfor %}
-        </select>
+    <h1>Delete room</h1>
+        <form action="deleteRoomRecord/{{ room.id }}" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete <b>Room {{room.roomName}}?</b></p>
+            <p>(Users who have made bookings of deleted rooms will be notified)</p>
+        <input type="submit" value="Submit">
     </form>
 {% endblock %}

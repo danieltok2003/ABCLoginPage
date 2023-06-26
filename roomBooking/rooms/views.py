@@ -35,13 +35,14 @@ def updateRoom(request,id):
     room.capacity = capacity
     room.save()
     return redirect("home")
-def deleteRoomView(request):
-    roomOptions = Room.objects.filter()
-    context = {'roomOptions': roomOptions}
-    # if request.POST:
-    #     form = DeleteRoomForm(request.POST)
-    #     Room.objects.filter(request.POST['pk']).delete()
-    #     if form.is_valid():
-            
-    #         return redirect("home")
+
+
+def deleteRoomView(request,id):
+    room = Room.objects.get(id=id)
+    context = {'room': room}
     return render(request, 'deleteRoom.html', context)
+
+def deleteRoomRecord(request,id):
+    room = Room.objects.get(id=id)
+    room.delete()
+    return redirect("home")
