@@ -9,6 +9,6 @@ class RoomBooking(models.Model):
     start = models.TimeField()
     end = models.TimeField()
 
-    def __str__(self):
-        return self.roomName
+    # def __str__(self):
+    #     return self.roomName
 

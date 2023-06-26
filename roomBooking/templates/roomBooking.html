@@ -3,6 +3,15 @@
 {% block title %}Book Room{% endblock %}
 
 {% block content %}
-    <br>
-    {{form.as_p}}
+    <h2>Book Room</h2>
+    <form method="POST" action="{% url 'roomBooking' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="userName">Username:</label>
+        <input type="text" name="userName" disabled='disabled' value="{{user.username}}">
+        <br>
+        <br>
+        {{ form.as_p }}
+        
+        <button type="submit">Make booking</button>
+    </form>
 {% endblock %}
