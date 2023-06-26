@@ -8,9 +8,12 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
     roomData = Room.objects.all()
     userData = User.objects.all()
     roomBookingData = RoomBooking.objects.all()
+
+    numBookings = RoomBooking.objects.count()
     context = {
         'rooms' : roomData,
         'users' : userData,
-        'roomBooking' : roomBookingData
+        'roomBooking' : roomBookingData,
+        'numBookings' : numBookings
     }
     return render(request, 'home.html', context)
