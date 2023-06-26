@@ -114,12 +114,12 @@
                     <table class="dataTable">
                         <tr style="font-weight:bold">
                             <th>User name</th>
-                            <th>Delete user</th>
+                            <!-- <th>Delete user</th> -->
                         </tr>
                         {% for user in users %}
                         <tr>
                             <td>{{user.username}}</td>
-                            <td><i class="bi bi-x-octagon" style='color:red'></i></td>
+                            <!-- <td><i class="bi bi-x-octagon" style='color:red'></i></td> -->
                         {% endfor %}
                         </tr>
                     </table>
@@ -140,7 +140,7 @@
                             <tr>
                                 <td>{{room.roomName}}</td>
                                 <td>{{room.capacity}}</td>
-                                <td><i class="bi bi-pencil" style="color:white"></i></td>
+                                <td><a href="rooms/modify/{{room.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
                                 <td><i class="bi bi-x-octagon" style='color:red'></i></td>
                             </tr>
                         {% endfor %}

@@ -25,5 +25,6 @@ urlpatterns = [
     path("rooms/", include("rooms.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path('', setupHomePage, name='home'), 
+    
     # path('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
