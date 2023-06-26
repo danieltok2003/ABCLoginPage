@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.core.paginator import Paginator
 from rooms.models import Room
 from django.contrib.auth.models import User
 

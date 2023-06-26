@@ -48,6 +48,17 @@
         font-weight:bold;
     }
 
+    .dataTable {
+        width:100%;
+    }
+    .dataTable td,th {
+        padding:5px;
+    }
+    .dataTable td{
+        border-top:1px solid var(--grey);
+        border-bottom:1px solid var(--grey);
+    }
+
 </style>
 <div class="container">
     <br>
@@ -100,18 +111,41 @@
                 <!-- ACCOUNT HANDLING -->
                 <div class="col boxColor py-2">
                     <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
-                    {% for user in users %}
-                        <p> {{user.username}} </p>
-                    {% endfor %}
+                    <table class="dataTable">
+                        <tr style="font-weight:bold">
+                            <th>User name</th>
+                            <th>Delete user</th>
+                        </tr>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{user.username}}</td>
+                            <td><i class="bi bi-x-octagon" style='color:red'></i></td>
+                        {% endfor %}
+                        </tr>
+                    </table>
+                    
                 </div>
                 
                 <!-- ROOM HANDLING -->
                 <div class="col boxColor py-2">
                     <button><a href="{% url 'createRoom' %}">Create room </a></button>
-                 
-                    {% for room in rooms %}
-                        <p>{{room.roomName}} </p>
-                    {% endfor %}
+                    <table class="dataTable">
+                        <tr style="font-weight:bold">
+                            <th>Room name</th>
+                            <th>Capacity</th>
+                            <th>Modify room</th>
+                            <th>Delete room</th>
+                        </tr>
+                        {% for room in rooms %}
+                            <tr>
+                                <td>{{room.roomName}}</td>
+                                <td>{{room.capacity}}</td>
+                                <td><i class="bi bi-pencil" style="color:white"></i></td>
+                                <td><i class="bi bi-x-octagon" style='color:red'></i></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    
                 </div>
           </div>
         </div>
