@@ -113,7 +113,7 @@
                     <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
                     <table class="dataTable">
                         <tr style="font-weight:bold">
-                            <th>User name</th>
+                            <th>Username</th>
                             <!-- <th>Delete user</th> -->
                         </tr>
                         {% for user in users %}
@@ -133,8 +133,8 @@
                         <tr style="font-weight:bold">
                             <th>Room name</th>
                             <th>Capacity</th>
-                            <th>Modify room</th>
-                            <th>Delete room</th>
+                            <th>Modify</th>
+                            <th>Delete</th>
                         </tr>
                         {% for room in rooms %}
                             <tr>
@@ -153,7 +153,33 @@
           <!-- ROOM AVAILABILITY -->
             <div class="container px-4 boxColor">
                 <div class="row py-2">
-                    <button><a href="#">Change room appointments</a></button>
+                    <button><a href="#">Book room</a></button>
+                    <table class="dataTable">
+                        <tr style="font-weight:bold">
+                            <th>Booked room</th>
+                            <th>Date</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>User</th>
+                            <th>Modify</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            {% for booking in roomBooking %}
+                                <tr>
+                                    <td>{{booking.roomName}}</td>
+                                    <td>{{booking.date}}</td>
+                                    <td>{{booking.start}}</td>
+                                    <td>{{booking.end}}</td>
+                                    <td>{{booking.userName}}</td>
+                                    <td><a href="#"><i class="bi bi-pencil" style="color:white"></i></a></td>
+                                    <td><a href="#"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
+                                </tr>
+                            {% endfor %}
+
+                            
+                        </tr>
+                    </table>
                 </div>
                 
             </div>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts', # handles user registration
     'rooms', # handles room creation, deleting, modifying and viewing
+    'booking'
 
 ]
 

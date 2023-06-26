@@ -45,4 +45,5 @@ def deleteRoomView(request,id):
 def deleteRoomRecord(request,id):
     room = Room.objects.get(id=id)
     room.delete()
+    # TODO - get ID of all users that booked room to be deleted, alert 
     return redirect("home")
