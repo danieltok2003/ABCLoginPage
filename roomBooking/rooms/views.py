@@ -20,6 +20,8 @@ def getRooms(request):
     
     return render(request, 'home.html', context)
 
+
+# SHOULD BE updateRoomView and updateRoomRecord
 def modifyRooms(request, id):
     room = Room.objects.get(id=id)
     context = {

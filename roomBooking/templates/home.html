@@ -63,6 +63,7 @@
 <div class="container">
     <br>
     <p><b>Welcome, {{ user.username }} </b></p>
+    <p>Dashboard last updated: {{ time }}</p>
 
     {% if user.is_staff %}
         <div class="container py-2 boxColor">
@@ -114,11 +115,13 @@
                     <table class="dataTable">
                         <tr style="font-weight:bold">
                             <th>Username</th>
+                            <th>isStaff</th>
                             <!-- <th>Delete user</th> -->
                         </tr>
                         {% for user in users %}
                         <tr>
                             <td>{{user.username}}</td>
+                            <td> {{user.is_staff}}</td>
                             <!-- <td><i class="bi bi-x-octagon" style='color:red'></i></td> -->
                         {% endfor %}
                         </tr>
@@ -135,6 +138,7 @@
                             <th>Capacity</th>
                             <th>Modify</th>
                             <th>Delete</th>
+                            <th>Booking history </th>
                         </tr>
                         {% for room in rooms %}
                             <tr>
@@ -142,6 +146,7 @@
                                 <td>{{room.capacity}}</td>
                                 <td><a href="rooms/modify/{{room.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
                                 <td><a href="rooms/deleteRoom/{{room.id}}"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
+                                <td><a href=""><i class="bi bi-book" style="color:brown"></i></a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -172,7 +177,7 @@
                                     <td>{{booking.start}}</td>
                                     <td>{{booking.end}}</td>
                                     <td>{{booking.userName}}</td>
-                                    <td><a href="#"><i class="bi bi-pencil" style="color:white"></i></a></td>
+                                    <td><a href="booking/modifyBooking/{{booking.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
                                     <td><a href="booking/deleteBooking/{{booking.id}}"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
                                 </tr>
                             {% endfor %}
@@ -188,7 +193,10 @@
         
         
     {% else %}
-        <p><b>Staff dashboard</b></p>
+        <div class="container py-2 boxColor">
+        <p class="boxHeaderFont"><b class="boxHeaderFont">Staff dashboard</b></p>
+        <p> Allows staff to book rooms and view availability. </p>
+        </div>
     {% endif %}
 
     <br>

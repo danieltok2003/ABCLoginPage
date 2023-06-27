@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import RoomBookingForm
+from .forms import RoomBookingForm, BookingModifyForm
 from datetime import datetime, timedelta
 from .models import RoomBooking
 # Create your views here.
@@ -28,3 +28,25 @@ def deleteBookingRecord(request, id):
     # TODO - get ID of all users that booked room to be deleted, alert 
     return redirect("home")
     
+def modifyBookingView(request,id):
+    booking = RoomBooking.objects.get(id=id)
+    data = {
+        'roomName' : booking.roomName,
+        'userName' : booking.userName,
+        'date' : booking.date,
+        'start' : booking.start,
+        'end' : booking.end,        
+    }
+    form = BookingModifyForm(initial=data)
+    return render(request, 'modifyBooking.html', {'form' : form, 'booking': booking})
+
+def modifyBookingRecord(request,id):
+    booking = RoomBooking.objects.get(id=id)
+    booking.date = request.POST['date']
+    booking.start = request.POST['start']
+    booking.end = request.POST['end']
+    booking.save()
+
+    return redirect("home")
+
+

@@ -15,9 +15,12 @@ class RoomBooking(models.Model):
         if self.start > self.end:
             raise ValidationError('Start should be before end')
         return super().clean()
+    def save(self):
+        self.full_clean()
+        super(RoomBooking,self).save()
     class Meta:
         constraints = [
-            models.CheckConstraint(check=Q(start__ltr=F('end')), name='start_before_end')
+            models.CheckConstraint(check=Q(start__lte=F('end')), name='start_before_end')
         ]
  
     # def __str__(self):
