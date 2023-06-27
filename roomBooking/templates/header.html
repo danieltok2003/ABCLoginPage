@@ -4,10 +4,14 @@
     height:70px;
     text-align:left;
     }
+    a {
+        text-decoration: none;
+    }
 </style>
-<div class="header" style="color:var(--offWhite); font-size:40px">
-    <div class="container">
-        <b>ABC Sdn Bhd. </b>
+<a href="{% url 'home' %}">
+    <div class="header" style="color:var(--offWhite); font-size:40px">
+        <div class="container">
+            <b>ABC Sdn Bhd. </b>
+        </div>  
     </div>
-    
-</div>
+</a>

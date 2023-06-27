@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+from django.conf.locale.es import formats as es_formats
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
+es_formats.DATETIME_FORMAT = "d M Y H:i:s"
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts', # handles user registration
     'rooms', # handles room creation, deleting, modifying and viewing
-    'booking'
+    'booking',
+    'datetimewidget',
 
 ]
 
