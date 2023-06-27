@@ -21,15 +21,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-hj#4ij-(bj%gsq6r-&b3$^dfn--pzwu(tt2j*23$*jp!5j#0(x'
-
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-from django.conf.locale.es import formats as es_formats
-DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')
-es_formats.DATETIME_FORMAT = "d M Y H:i:s"
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'roomBooking.urls'

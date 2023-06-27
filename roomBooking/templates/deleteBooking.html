@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete booking {% endblock %}
+
+{% block content %}
+    <h2>Delete Booking</h2>
+    <form method="POST" action="deleteBookingRecord/{{ booking.id }}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Are you sure you want to delete <b>{{booking.userName}}'s booking on {{booking.date}} between {{booking.start}} - {{booking.end}}?</b></p>
+        <button type="submit">Delete booking</button>
+    </form>
+{% endblock %}
