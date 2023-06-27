@@ -6,8 +6,9 @@
     <h2>Book Room</h2>
     <form method="POST" action="{% url 'roomBooking' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="userName">Username:</label>
-        <input type="text" name="userName" disabled='disabled' value="{{user.username}}">
+        <label for="hiddenUserName">Username:</label>
+        <input type="text" name="hiddenUserName"value="{{user.username}}" disabled="disabled">
+      
         <br>
         <br>
         {{ form.as_p }}
