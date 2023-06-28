@@ -2,11 +2,18 @@ from django.shortcuts import render,redirect
 from .forms import RoomBookingForm, BookingModifyForm
 from datetime import datetime, timedelta
 from .models import RoomBooking
+from django.contrib.auth.models import User
 # Create your views here.
 
 
 def bookingManagementView(request):
-    bookings = RoomBooking.objects.all()
+    # show all bookings if admin
+    if request.user.is_staff:
+        bookings = RoomBooking.objects.all()
+    # show only own bookings if just staff
+    else:
+        userName = User.objects.get(username=request.user.username)
+        bookings = RoomBooking.objects.filter(userName = userName)
     context = {'roomBooking' :bookings}
     return render(request, "bookingManagement.html", context)
 

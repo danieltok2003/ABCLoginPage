@@ -6,7 +6,11 @@
 {% if user.is_authenticated %}
     <br>
     <div class="container py-4 boxColor boxShadow">
-        <h2>Manage bookings</h2>
+        <h2>Manage 
+            {% if not user.is_staff %}
+                own
+            {% endif %}
+            bookings</h2>
         <button><a href="{% url 'roomBooking' %}">Book room</a></button>
                     <table class="dataTable">
                         <tr style="font-weight:bold">

@@ -6,7 +6,7 @@ from django.db.models import Q,F
 
 class RoomBooking(models.Model):
     roomName = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
-    userName = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    userName = models.ForeignKey(User, on_delete=models.CASCADE, default="", name="userName")
     date = models.DateField()
     start = models.TimeField()
     end = models.TimeField()
