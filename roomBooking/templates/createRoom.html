@@ -3,10 +3,14 @@
 {% block title %}Create Room{% endblock %}
 
 {% block content %}
+<br>
+    <div class="container py-4 boxColor boxShadow">
     <h2>Create Room</h2>
     <form method="POST" action="{% url 'createRoom' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Room</button>
     </form>
+    </div>
+    
 {% endblock %}

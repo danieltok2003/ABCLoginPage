@@ -3,6 +3,8 @@
 {% block title %}Delete Room{% endblock %}
 
 {% block content %}
+<br>
+    <div class="container py-4 boxColor boxShadow">
     <h1>Delete room</h1>
         <form action="deleteRoomRecord/{{ room.id }}" method="post">
             {% csrf_token %}
@@ -10,4 +12,5 @@
             <p>(Users who have made bookings of deleted rooms will be notified)</p>
         <input type="submit" value="Submit">
     </form>
+    </div>
 {% endblock %}

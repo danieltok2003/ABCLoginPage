@@ -3,6 +3,8 @@
 {% block title %}Modify Booking{% endblock %}
 
 {% block content %}
+<br>
+    <div class="container py-4 boxColor boxShadow">
     <h1>Modify booking </h1>
         <p><b>Changing {{booking.userName}}'s booking for Room {{booking.roomName}} on {{booking.date}} between {{booking.start}} - {{booking.end}}</b></p>
         <form action="modifyBookingRecord/{{ booking.id }}" method="post">
@@ -10,4 +12,5 @@
             {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
+    </div>
 {% endblock %}
