@@ -3,6 +3,10 @@
 {% block title %}Book Room{% endblock %}
 
 {% block content %}
+<!-- is staff or is admin -->
+{% if user.is_authenticated %}
+<br>
+    <div class="container py-4 boxColor boxShadow">
     <h2>Book Room</h2>
     <form method="POST" action="{% url 'roomBooking' %}" enctype="multipart/form-data">
         {% csrf_token %}
@@ -15,4 +19,12 @@
         
         <button type="submit">Make booking</button>
     </form>
+</div>
+{% else %}
+<br>
+<div class="container py-4 boxColor boxShadow">
+    <p>You are not logged in.</p>
+    <button><a href="{% url 'login' %}">Log In</a></button>
+</div>
+{% endif %}
 {% endblock %}

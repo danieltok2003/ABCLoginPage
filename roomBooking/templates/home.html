@@ -98,10 +98,25 @@
         
         
     {% else %}
-        <div class="container py-2 boxColor">
+        <div class="container py-2 boxColor boxShadow">
         <p class="boxHeaderFont"><b class="boxHeaderFont">Staff dashboard</b></p>
         <p> Allows staff to book rooms and view availability. </p>
         </div>
+
+        <div class="container boxShadow" style="text-align:center">
+            <div class="row pt-4 headerNumbers">  
+                <div class="col boxColor py-2">
+                    <a href="bookingManagement"><i class="bi bi-journals"></i></a>
+                </div>
+          </div>
+
+          <div class="row headerText">  
+            <div class="col boxColor py-2">
+                Booking management
+            </div>
+
+        </div>
+
     {% endif %}
 
     <br>
@@ -123,6 +138,5 @@
     </div>
 
 
-</div>
 {% endif %}
 {% endblock %}

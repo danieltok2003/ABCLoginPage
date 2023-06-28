@@ -3,6 +3,7 @@
 {% block title %}Delete Room{% endblock %}
 
 {% block content %}
+{% if user.is_staff %}
 <br>
     <div class="container py-4 boxColor boxShadow">
     <h1>Delete room</h1>
@@ -13,4 +14,19 @@
         <input type="submit" value="Submit">
     </form>
     </div>
+<!-- authenticated but not admin -->
+{% elif user.is_authenticated %} 
+<br>
+<div class="container py-4 boxColor boxShadow">
+    <p>You are not an admin.</p>
+    <button><a href="{% url 'login' %}">Log In</a></button>
+</div>
+<!-- not authenticated -->
+{% else %}
+<br>
+<div class="container py-4 boxColor boxShadow">
+    <p>You are not logged in.</p>
+    <button><a href="{% url 'login' %}">Log In</a></button>
+</div>
+{% endif %}
 {% endblock %}

@@ -3,6 +3,7 @@
 {% block title %}Manage bookings {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <br>
     <div class="container py-4 boxColor boxShadow">
         <h2>Manage bookings</h2>
@@ -14,8 +15,10 @@
                             <th>Start</th>
                             <th>End</th>
                             <th>User</th>
+                            {% if user.is_staff %}
                             <th>Modify</th>
                             <th>Delete</th>
+                            {% endif %}
                         </tr>
                         <tr>
                             {% for booking in roomBooking %}
@@ -25,8 +28,10 @@
                                     <td>{{booking.start}}</td>
                                     <td>{{booking.end}}</td>
                                     <td>{{booking.userName}}</td>
+                                    {% if user.is_staff %}
                                     <td><a href="bookingManagement/modifyBooking/{{booking.id}}"><i class="bi bi-pencil"></i></a></td>
                                     <td><a href="bookingManagement/deleteBooking/{{booking.id}}"><i class="bi bi-x-octagon"></i></a></td>
+                                    {% endif %}
                                 </tr>
                             {% endfor %}
 
@@ -34,6 +39,14 @@
                         </tr>
                     </table>
     </div>
+<!-- not authenticated -->
+{% else %}
+<br>
+<div class="container py-4 boxColor boxShadow">
+    <p>You are not logged in.</p>
+    <button><a href="{% url 'login' %}">Log In</a></button>
+</div>
+{% endif %}
     
     
 {% endblock %}
