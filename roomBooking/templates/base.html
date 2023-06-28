@@ -15,9 +15,9 @@
 :root {
 
 --orange:#FF8551;
---paleBlue:#9BCDD2;
---offWhite:#FAF0E4;
---palePink:#FFDEDE;
+--white:#f9f9f9;
+--offWhite:#f0f0f0;
+--buttonColor:#f0f0f0;
 --grey:#2D4356
 
 }
@@ -28,25 +28,28 @@ body {
 }
 
 a {
-        text-decoration:none;
+        /* text-decoration:none; */
         color:var(--grey)
     }
     .manageIconColor {
         color:var(--grey)
-    }
-    .container {
-        border-radius:5px
     }
 
     .boxHeaderFont {
         font-size:22px;
     }
 
+    .boxShadow {
+        filter: drop-shadow(0px 0px 3px #cecece);
+        border-radius:2px;
+    }
+
     .boxColor {
-        background-color:var(--paleBlue);
+        
+        background-color:var(--white);
     }
     button {
-        background-color:var(--palePink);
+        background-color:var(--buttonColor);
         border:2px solid var(--grey);
         border-radius:5px;
         width:100%;
@@ -57,11 +60,21 @@ a {
         width:100%;
     }
     .button {
-        background-color:var(--palePink);
+        background-color:var(--buttonColor);
         border:2px solid var(--grey);
         border-radius:5px;
         width:100%;
     }
+    .bi-pencil {
+        color:rgb(125, 125, 254);
+    }
+    .bi-x-octagon {
+        color:red;
+    }
+    .bi-book {
+        color:brown;
+    }
+
     button a {
         color:var(--grey);
     }
@@ -87,6 +100,7 @@ a {
 </style>
     <title>{% block title %} Login Page {% endblock %}</title>
 </head>
+
 <body>
     {% include 'header.html' %}
     <main>

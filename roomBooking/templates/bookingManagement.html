@@ -4,7 +4,7 @@
 
 {% block content %}
     <br>
-    <div class="container py-4 boxColor">
+    <div class="container py-4 boxColor boxShadow">
         <h2>Manage bookings</h2>
         <button><a href="{% url 'roomBooking' %}">Book room</a></button>
                     <table class="dataTable">
@@ -25,8 +25,8 @@
                                     <td>{{booking.start}}</td>
                                     <td>{{booking.end}}</td>
                                     <td>{{booking.userName}}</td>
-                                    <td><a href="bookingManagement/modifyBooking/{{booking.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
-                                    <td><a href="bookingManagement/deleteBooking/{{booking.id}}"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
+                                    <td><a href="bookingManagement/modifyBooking/{{booking.id}}"><i class="bi bi-pencil"></i></a></td>
+                                    <td><a href="bookingManagement/deleteBooking/{{booking.id}}"><i class="bi bi-x-octagon"></i></a></td>
                                 </tr>
                             {% endfor %}
 

@@ -14,12 +14,12 @@
     <p>Dashboard last updated: {{ time }}</p>
 
     {% if user.is_staff %}
-        <div class="container py-2 boxColor">
+        <div class="container py-2 boxColor boxShadow">
             <p class="boxHeaderFont"><b class="boxHeaderFont">Admin dashboard</b></p>
             <p> Allows admins to create new accounts, manage rooms and view availability. </p>
         </div>
 
-        <div class="container" style="text-align:center">
+        <div class="container boxShadow" style="text-align:center">
             <div class="row pt-4 headerNumbers">  
                 <div class="col boxColor py-2">
                     {{numBookings}}
@@ -60,7 +60,7 @@
           <!-- ROOM AVAILABILITY -->
             
 
-            <div class="container" style="text-align:center">
+            <div class="container boxShadow" style="text-align:center">
                 <div class="row pt-4 headerNumbers">  
                     <div class="col boxColor py-2">
                         <a href="userManagement"><i class="bi bi-people"></i></a>
@@ -105,8 +105,6 @@
     {% endif %}
 
     <br>
-    <a href="{% url 'logout' %}" style="background-color:var(--palePink); padding:5px; border:2px solid var(--grey); border-radius:5px;">Log Out</a>
-
         
     </div>
     
