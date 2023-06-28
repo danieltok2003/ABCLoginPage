@@ -17,10 +17,11 @@
 --orange:#FF8551;
 --white:#f9f9f9;
 --offWhite:#f0f0f0;
---buttonColor:#f0f0f0;
+--buttonColor:var(--grey);
 --grey:#2D4356
-
 }
+
+
 
 body {
     background-color:var(--offWhite);
@@ -53,17 +54,13 @@ a {
         border:2px solid var(--grey);
         border-radius:5px;
         width:100%;
-    
+        color:var(--offWhite) !important;
     }
     button a {
         display:block;
         width:100%;
-    }
-    .button {
-        background-color:var(--buttonColor);
-        border:2px solid var(--grey);
-        border-radius:5px;
-        width:100%;
+        color:var(--offWhite) !important;
+        
     }
     .bi-pencil {
         color:rgb(125, 125, 254);

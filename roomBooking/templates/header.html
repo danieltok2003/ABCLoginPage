@@ -2,7 +2,7 @@
     a {
         text-decoration: none;
     }
-    ul {
+    .header ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -10,11 +10,11 @@
   background-color: var(--grey);
 }
 
-li {
+.header li {
   float: left;
 }
 
-li a {
+.header li a {
   display: block;
   color: var(--offWhite);
   text-align: center;
@@ -22,15 +22,16 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+.header li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
+.header .active {
   background-color: #111;
 }
 </style>
 <html>
+    <div class="header">
     <ul>
         <div class="container">
             <li><a href="{% url 'home' %}"><b>ABC Sdn Bhd.</b></a></li>
@@ -41,4 +42,5 @@ li a:hover:not(.active) {
             
         </div>
     </ul>
+</div>  
 </html>
