@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models import Q,F
+from django.utils.timezone import localtime,now
 
 class RoomBooking(models.Model):
     roomName = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
@@ -11,9 +12,15 @@ class RoomBooking(models.Model):
     start = models.TimeField()
     end = models.TimeField()
 
+    
     def clean(self):
+        time = localtime(now())
         if self.start > self.end:
-            raise ValidationError('Start should be before end')
+            raise ValidationError('Booking start time must be before booking end time')
+        if self.date < time.date():
+            raise ValidationError('Booking date is before current date')
+        if self.start < time.time():
+            raise ValidationError('Booking start time is before current time')
         return super().clean()
     def save(self):
         self.full_clean()
