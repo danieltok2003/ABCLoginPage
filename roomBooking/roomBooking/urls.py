@@ -22,9 +22,12 @@ from .views import setupHomePage
 urlpatterns = [
     
     path("admin/", admin.site.urls),
-    path("accounts/", include("accounts.urls")),
-    path("booking/", include("booking.urls")),
-    path("rooms/", include("rooms.urls")),
+    # path("accounts/", include("accounts.urls")),
+    # path("booking/", include("booking.urls")),
+    path("userManagement/", include("accounts.urls")),
+    path("roomManagement", include("rooms.urls")),
+    # path("rooms/", include("rooms.urls")),
+    path("bookingManagement", include('booking.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
     path('', setupHomePage, name='home'), 
     

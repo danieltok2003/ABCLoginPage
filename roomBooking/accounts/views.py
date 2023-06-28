@@ -8,11 +8,15 @@ from django.contrib.auth.models import User
 
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("userManagement")
     template_name = "registration/signup.html"
 
-def showUsers(request):
+# def showUsers(request):
+#     data = User.objects.all()
+#     users = {'users': data}
+#     return render(request, "home.html", users)
+
+def userManagementView(request):
     data = User.objects.all()
-    users = {'users': data}
-    print(users)
-    return render(request, "home.html", users)
+    context = {'users': data}
+    return render(request, "userManagement.html", context)

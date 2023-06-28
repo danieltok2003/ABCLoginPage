@@ -4,6 +4,12 @@ from datetime import datetime, timedelta
 from .models import RoomBooking
 # Create your views here.
 
+
+def bookingManagementView(request):
+    bookings = RoomBooking.objects.all()
+    context = {'roomBooking' :bookings}
+    return render(request, "bookingManagement.html", context)
+
 def roomBookingView(request):
     context = {}
     form = RoomBookingForm()
@@ -13,7 +19,7 @@ def roomBookingView(request):
             obj = form.save(commit=False)
             obj.userName = request.user
             obj.save()
-            return redirect("home")
+            return redirect("bookingManagement")
     context['form'] = form
     return render(request, "roomBooking.html", context)
 
@@ -26,7 +32,7 @@ def deleteBookingRecord(request, id):
     booking = RoomBooking.objects.get(id=id)
     booking.delete()
     # TODO - get ID of all users that booked room to be deleted, alert 
-    return redirect("home")
+    return redirect("bookingManagement")
     
 def modifyBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)
@@ -47,6 +53,6 @@ def modifyBookingRecord(request,id):
     booking.end = request.POST['end']
     booking.save()
 
-    return redirect("home")
+    return redirect("bookingManagement")
 
 

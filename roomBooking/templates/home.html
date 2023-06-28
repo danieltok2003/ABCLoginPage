@@ -5,59 +5,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <style>
-    a {
-        text-decoration:none;
-        color:var(--grey)
-    }
-    .container {
-        border-radius:5px
-    }
-
-    .boxHeaderFont {
-        font-size:22px;
-    }
-
-    .boxColor {
-        background-color:var(--paleBlue);
-    }
-    button {
-        background-color:var(--palePink);
-        border:2px solid var(--grey);
-        border-radius:5px;
-        width:100%;
     
-    }
-    button a {
-        display:block;
-        width:100%;
-    }
-    .button {
-        background-color:var(--palePink);
-        border:2px solid var(--grey);
-        border-radius:5px;
-        width:100%;
-    }
-    button a {
-        color:var(--grey);
-    }
-    .headerNumbers {
-        font-size:50px;
-        font-weight:bold;
-    }
-    .headerText {
-        font-weight:bold;
-    }
-
-    .dataTable {
-        width:100%;
-    }
-    .dataTable td,th {
-        padding:5px;
-    }
-    .dataTable td{
-        border-top:1px solid var(--grey);
-        border-bottom:1px solid var(--grey);
-    }
 
 </style>
 <div class="container">
@@ -104,92 +52,49 @@
 
             </div>
 
-      </div>
+        </div>
         </div>
 
-        <div class="container">
-            <div class="row py-4">  
-                <!-- ACCOUNT HANDLING -->
-                <div class="col boxColor py-2">
-                    <button><a href="{% url 'signup' %}">Create staff/admin account</a></button>
-                    <table class="dataTable">
-                        <tr style="font-weight:bold">
-                            <th>Username</th>
-                            <th>isStaff</th>
-                            <!-- <th>Delete user</th> -->
-                        </tr>
-                        {% for user in users %}
-                        <tr>
-                            <td>{{user.username}}</td>
-                            <td> {{user.is_staff}}</td>
-                            <!-- <td><i class="bi bi-x-octagon" style='color:red'></i></td> -->
-                        {% endfor %}
-                        </tr>
-                    </table>
-                    
-                </div>
-                
-                <!-- ROOM HANDLING -->
-                <div class="col boxColor py-2">
-                    <button><a href="{% url 'createRoom' %}">Create room </a></button>
-                    <table class="dataTable">
-                        <tr style="font-weight:bold">
-                            <th>Room name</th>
-                            <th>Capacity</th>
-                            <th>Modify</th>
-                            <th>Delete</th>
-                            <th>Booking history </th>
-                        </tr>
-                        {% for room in rooms %}
-                            <tr>
-                                <td>{{room.roomName}}</td>
-                                <td>{{room.capacity}}</td>
-                                <td><a href="rooms/modify/{{room.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
-                                <td><a href="rooms/deleteRoom/{{room.id}}"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
-                                <td><a href=""><i class="bi bi-book" style="color:brown"></i></a></td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                    
-                </div>
-          </div>
-        </div>
+        
 
           <!-- ROOM AVAILABILITY -->
-            <div class="container px-4 boxColor">
-                <div class="row py-2">
-                    <button><a href="{% url 'roomBooking' %}">Book room</a></button>
-                    <table class="dataTable">
-                        <tr style="font-weight:bold">
-                            <th>Booked room</th>
-                            <th>Date</th>
-                            <th>Start</th>
-                            <th>End</th>
-                            <th>User</th>
-                            <th>Modify</th>
-                            <th>Delete</th>
-                        </tr>
-                        <tr>
-                            {% for booking in roomBooking %}
-                                <tr>
-                                    <td>{{booking.roomName}}</td>
-                                    <td>{{booking.date}}</td>
-                                    <td>{{booking.start}}</td>
-                                    <td>{{booking.end}}</td>
-                                    <td>{{booking.userName}}</td>
-                                    <td><a href="booking/modifyBooking/{{booking.id}}"><i class="bi bi-pencil" style="color:white"></i></a></td>
-                                    <td><a href="booking/deleteBooking/{{booking.id}}"><i class="bi bi-x-octagon" style='color:red'></i></a></td>
-                                </tr>
-                            {% endfor %}
+            
 
-                            
-                        </tr>
-                    </table>
-                </div>
-                
-            </div>
-
+            <div class="container" style="text-align:center">
+                <div class="row pt-4 headerNumbers">  
+                    <div class="col boxColor py-2">
+                        <a href="userManagement"><i class="bi bi-people"></i></a>
+                    </div>
+                    <div class="col boxColor py-2">
+                        <a href="roomManagement"><i class="bi bi-door-open"></i></a>
+                    </div>
+                    <div class="col boxColor py-2">
+                        <a href="bookingManagement"><i class="bi bi-journals"></i></a>
+                    </div>
+              </div>
     
+              <div class="row headerText">  
+                <!-- ACCOUNT HANDLING -->
+                <div class="col boxColor py-2">
+                    User management
+                    <!-- {% for user in users %}
+                        <p> {{user.username}}</p>
+                    {% endfor %} -->
+                </div>
+                    
+                <!-- ROOM HANDLING -->
+                <div class="col boxColor py-2">
+                    Room management
+                    
+                </div>
+                <div class="col boxColor py-2">
+                    Booking management
+                    
+    
+                </div>
+    
+            </div>
+            </div>
         
         
     {% else %}

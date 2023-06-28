@@ -5,12 +5,18 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 from django.urls import reverse_lazy
 
+def roomManagementView(request):
+    rooms = Room.objects.all()
+    context = {'rooms' : rooms}
+    return render(request, "roomManagement.html", context)
+
+
 def createRoomView(request):
     if request.POST:
         form = CreateRoomForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("roomManagement")
         # TODO - VALIDATE IF UNIQUE ROOM NAME INPUTTED
     return render(request, 'createRoom.html', {'form' : CreateRoomForm})
 
@@ -36,7 +42,7 @@ def updateRoom(request,id):
     room.roomName = roomName
     room.capacity = capacity
     room.save()
-    return redirect("home")
+    return redirect("roomManagement")
 
 
 def deleteRoomView(request,id):
@@ -48,4 +54,4 @@ def deleteRoomRecord(request,id):
     room = Room.objects.get(id=id)
     room.delete()
     # TODO - get ID of all users that booked room to be deleted, alert
-    return redirect("home")
+    return redirect("roomManagement")
