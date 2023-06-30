@@ -31,9 +31,9 @@ def findBookingOverlap(newBooking):
     overlappingSlots = bookingsOnDayInRoom.filter(
         Q(start__lt=newBooking.start, end__gt=newBooking.end) | 
         Q(start__gt=newBooking.start, end__lt=newBooking.end) |
-        Q(start=newBooking.start, end=newBooking.end) |
-        Q(start__gt=newBooking.start, end__gt=newBooking.end) |
-        Q(start__lt=newBooking.start, end__lt=newBooking.end)
+        Q(start=newBooking.start, end=newBooking.end) | # redundant?
+        (Q(start__gte=newBooking.start, end__gte=newBooking.end) & Q(start__lt=newBooking.end)) |
+        (Q(start__lt=newBooking.start, end__lt=newBooking.end) & Q(end__gt=newBooking.start))
     )
     return overlappingSlots
 
