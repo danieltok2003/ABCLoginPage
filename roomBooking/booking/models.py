@@ -19,7 +19,7 @@ class RoomBooking(models.Model):
             raise ValidationError('Booking start time must be before booking end time')
         if self.date < time.date():
             raise ValidationError('Booking date is before current date')
-        if self.start < time.time():
+        if self.start < time.time() and self.date == time.date():
             raise ValidationError('Booking start time is before current time')
         return super().clean()
     def save(self):
