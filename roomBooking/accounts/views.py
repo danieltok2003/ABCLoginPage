@@ -3,6 +3,7 @@ from django.views import generic
 from django.shortcuts import render
 from .forms import CustomUserCreationForm
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -20,3 +21,13 @@ def userManagementView(request):
     data = User.objects.all()
     context = {'users': data}
     return render(request, "userManagement.html", context)
+
+def deleteUserView(request,id):
+    user = User.objects.get(id=id)
+    context = {'deletingUser' : user}
+    return render(request, "deleteUser.html", context)
+
+def deleteUserRecord(request,id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect("home")
