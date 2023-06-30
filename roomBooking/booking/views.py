@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from .models import RoomBooking
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.core.exceptions import ValidationError
 # Create your views here.
 
 
@@ -37,10 +38,34 @@ def findBookingOverlap(newBooking):
     )
     return overlappingSlots
 
+
+# TODO - CHECK IF BOOKING IS GOOD OR BAD ON "Check availability button press"
+# take into account roomname, date, start, end
+# Also reorder bookings chronologiclly
+
 def roomBookingView(request):
-    context = {}
+    context = {"bookingStatus" : True}
     form = RoomBookingForm()
-    if (request.method == "POST"):
+     # handling showing bookings for that day for that room
+    if "checkAvailability" in request.POST:
+        # save all data previously put in
+        roomName = request.POST['roomName']
+        date = request.POST['date']
+        start = request.POST['start']
+        end = request.POST['end']
+        initial_dict = {
+            "roomName" : roomName,
+            "date" : date,
+            "start" : start,
+            "end" : end,
+        }
+        form = RoomBookingForm(initial=initial_dict)
+        
+        bookingsOnDateForRoom = RoomBooking.objects.filter(date=date,roomName=roomName)
+        context['bookingsOnDateForRoom'] = bookingsOnDateForRoom
+    
+    # handling form submission
+    elif (request.method == "POST"):
         form = RoomBookingForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
@@ -55,6 +80,8 @@ def roomBookingView(request):
             else:
                 obj.save()
                 return redirect("bookingManagement")
+            
+   
     context['form'] = form
     return render(request, "roomBooking.html", context)
 
@@ -90,8 +117,17 @@ def modifyBookingRecord(request,id):
         booking.date = request.POST['date']
         booking.start = request.POST['start']
         booking.end = request.POST['end']
-        booking.save()
 
+        overlappingBookings = findBookingOverlap(booking)
+        overlappingBookings = overlappingBookings.filter(~Q(id=id)) # remove original booking from queryset
+        if (overlappingBookings.exists()):
+            context = {
+                    'overlappingBookings' : overlappingBookings,
+                    'booking' : booking
+                }
+            return render(request, "invalidBooking.html", context)
+        else:
+            booking.save()
     return redirect("bookingManagement")
 
 

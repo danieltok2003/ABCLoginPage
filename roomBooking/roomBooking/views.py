@@ -11,12 +11,10 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
     # roomData = Room.objects.all()
     # userData = User.objects.all()
     roomBookingData = RoomBooking.objects.all()
-    numBookings = RoomBooking.objects.count()
-
-    
 
     time = localtime(now())
-    numMeetingsNow = 0
+    
+    numBookings = RoomBooking.objects.count()
     numMeetingsNow = roomBookingData.filter(date=time.date(), start__lte=time.time(), end__gte=time.time()).count()
     numRoomsAvailable = Room.objects.all().count() - numMeetingsNow
 

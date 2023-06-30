@@ -1,18 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}Modify Booking{% endblock %}
+{% block title %}Delete Room{% endblock %}
 
 {% block content %}
 {% if user.is_staff %}
 <br>
     <div class="container py-4 boxColor boxShadow">
-    <h1>Modify booking </h1>
-        <p><b>Changing {{booking.userName}}'s booking for Room {{booking.roomName}} on {{booking.date}} between {{booking.start}} - {{booking.end}}</b></p>
-        <form action="modifyBookingRecord/{{booking.id}}" method="post">
-            {% csrf_token %}
-            {{form.as_p}}
-        <input type="submit" value="Submit">
-    </form>
+    <h1>Invalid booking</h1>
+        Error with booking: {{message}}
     </div>
 <!-- authenticated but not admin -->
 {% elif user.is_authenticated %} 
