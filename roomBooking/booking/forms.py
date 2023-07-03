@@ -6,10 +6,18 @@ from django.db import models
 from datetimewidget.widgets import DateWidget, TimeWidget
 from django.core.exceptions import ValidationError
 
+# roomName = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
+# userName = models.ForeignKey(User, on_delete=models.CASCADE, default="", name="userName")
+# date = models.DateField()
+# start = models.TimeField()
+# end = models.TimeField()
+# bookingDeleteMsg = models.CharField(default="")
+
 class RoomBookingForm(forms.ModelForm):
+    
     class Meta:
         model = RoomBooking
-        exclude = ["userName"]
+        fields = ["roomName", "date", "start", "end"]
         widgets = {
             'date' : DateWidget(usel10n=True),
             'start' : TimeWidget(),
@@ -19,7 +27,7 @@ class RoomBookingForm(forms.ModelForm):
 class BookingModifyForm(forms.ModelForm):
     class Meta:
         model = RoomBooking
-        exclude = ['userName', 'roomName']
+        fields = ["date", "start", "end"]
         widgets = {
             'date' : DateWidget(usel10n=True),
             'start' : TimeWidget(),

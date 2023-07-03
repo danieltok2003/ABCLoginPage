@@ -22,6 +22,7 @@ from .views import setupHomePage
 urlpatterns = [
     
     path("admin/", admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
     # path("accounts/", include("accounts.urls")),
     # path("booking/", include("booking.urls")),
     path("userManagement/", include("accounts.urls")),

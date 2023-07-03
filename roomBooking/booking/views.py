@@ -17,7 +17,7 @@ def bookingManagementView(request):
     else:
         userName = User.objects.get(username=request.user.username)
         bookings = RoomBooking.objects.filter(userName = userName)
-    context = {'roomBooking' :bookings}
+    context = {'roomBooking' :bookings.order_by("date", "start")}
     return render(request, "bookingManagement.html", context)
 
 
@@ -113,8 +113,13 @@ def deleteBookingView(request,id):
 
 def deleteBookingRecord(request, id):
     booking = RoomBooking.objects.get(id=id)
-    booking.delete()
     # TODO - get ID of all users that booked room to be deleted, alert 
+    # deletedBooking = DeleteBookingModel.objects.create(
+    #     roomName=booking.roomName, userName=booking.userName, date=booking.date, start=booking.start, end=booking.end
+    # )
+    booking.delete()
+    
+
     return redirect("bookingManagement")
     
 

@@ -11,6 +11,7 @@
         <form action="modifyBookingRecord/{{booking.id}}" method="post">
             {% csrf_token %}
             {{form.as_p}}
+        <button type="submit" name="checkAvailability">Check availability</button>
         <input type="submit" value="Submit">
     </form>
     </div>

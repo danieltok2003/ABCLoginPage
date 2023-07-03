@@ -14,9 +14,9 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
 
     time = localtime(now())
     
-    numBookings = RoomBooking.objects.count()
+    numBookings = roomBookingData.count()
     numMeetingsNow = roomBookingData.filter(date=time.date(), start__lte=time.time(), end__gte=time.time()).count()
-    numRoomsAvailable = Room.objects.all().count() - numMeetingsNow
+    numRoomsAvailable = roomBookingData.count() - numMeetingsNow
 
     # if the booking date has passed or the booking is today but the end time has passed
     passedBookings = roomBookingData.filter(Q(date__lt=time.date()) | Q(date=time.date(), end__lt=time.time()))
@@ -29,6 +29,6 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
         'numBookings' : numBookings,
         'time' : time,
         'numMeetingsNow': numMeetingsNow,
-        'numRoomsAvailable': numRoomsAvailable
+        'numRoomsAvailable': numRoomsAvailable,
     }
     return render(request, 'home.html', context)
