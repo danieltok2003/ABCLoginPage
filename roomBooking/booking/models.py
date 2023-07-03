@@ -33,4 +33,10 @@ class RoomBooking(models.Model):
     # def __str__(self):
     #     return self.roomName
 
+class DeletedBookingModel(models.Model):
+    roomName = models.CharField(max_length=255)
+    userName = models.CharField(max_length=255)
+    date = models.DateField()
+    start = models.TimeField()
+    end = models.TimeField()
 

@@ -12,7 +12,30 @@
     <br>
     <p><b>Welcome, {{ user.username }} </b></p>
     <p>Dashboard last updated: {{ time }}</p>
-    
+    {% if deletedBookings|length > 0 %}
+    <div class="container py-2 boxColor boxShadow" style="background-color:var(--fail)">
+        <p class="boxHeaderFont"><b class="boxHeaderFont">Warning: Deleted bookings</b></p>
+        <table class="dataTable">
+            <tr>
+                <th>Room name</th>
+                <th>Date</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>User</th>
+            </tr>
+            {% for booking in deletedBookings %}
+            <tr>
+                <td>{{booking.roomName}}</td>
+                <td>{{booking.date}}</td>
+                <td>{{booking.start}}</td>
+                <td>{{booking.end}}</td>
+                <td>{{booking.userName}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    {% endif %}
     {% if user.is_staff %}
         <div class="container py-2 boxColor boxShadow">
             <p class="boxHeaderFont"><b class="boxHeaderFont">Admin dashboard</b></p>

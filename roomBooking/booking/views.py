@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import RoomBookingForm, BookingModifyForm
 from datetime import datetime, timedelta
-from .models import RoomBooking
+from .models import RoomBooking, DeletedBookingModel
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.exceptions import ValidationError
@@ -121,9 +121,8 @@ def deleteBookingRecord(request, id):
     # deletedBooking = DeleteBookingModel.objects.create(
     #     roomName=booking.roomName, userName=booking.userName, date=booking.date, start=booking.start, end=booking.end
     # )
+    DeletedBookingModel.objects.create(roomName=booking.roomName, date=booking.date, start=booking.start, end=booking.end, userName=booking.userName)
     booking.delete()
-    
-
     return redirect("bookingManagement")
     
 
