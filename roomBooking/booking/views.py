@@ -95,6 +95,8 @@ def roomBookingView(request):
 
 def modifyBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)
+    bookingsForRoom = RoomBooking.objects.filter(roomName=booking.roomName).exclude(id=id)
+
     
     data = {
         'roomName' : booking.roomName,
@@ -102,9 +104,11 @@ def modifyBookingView(request,id):
         'date' : booking.date,
         'start' : booking.start,
         'end' : booking.end,        
+        'bookingsForRoom' : bookingsForRoom,
+        'bookingsForRoomCount' : len(bookingsForRoom)
     }
     form = BookingModifyForm(initial=data)
-    return render(request, 'modifyBooking.html', {'form' : form, 'booking': booking})
+    return render(request, 'modifyBooking.html', {'form' : form, 'booking': booking, 'bookingsForRoom': bookingsForRoom})
 
 def deleteBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)

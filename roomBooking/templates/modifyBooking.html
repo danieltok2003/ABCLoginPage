@@ -11,7 +11,34 @@
         <form action="modifyBookingRecord/{{booking.id}}" method="post">
             {% csrf_token %}
             {{form.as_p}}
-        <button type="submit" name="checkAvailability">Check availability</button>
+
+        <div class="container py-4 boxColor boxShadow">
+            <h2><b>Current bookings for Room {{booking.roomName}}</b></h2>
+            {{bookingsForRoomCount}}
+            <table class="dataTable">
+                <tr>
+                    <th>Room name</th>
+                    <th>Date</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>User</th>
+                </tr>
+                
+                {% for bookedRoom in bookingsForRoom %}
+                    <tr>
+                        <td>{{bookedRoom.roomName}}</td>
+                        <td>{{bookedRoom.date}}</td>
+                        <td>{{bookedRoom.start}}</td>
+                        <td>{{bookedRoom.end}}</td>
+                        <td>{{bookedRoom.userName}}</td>
+                    </tr>
+
+                {% endfor %}
+                
+            </table>
+        </div>
+        <br>
+        
         <input type="submit" value="Submit">
     </form>
     </div>
