@@ -34,7 +34,7 @@ def findBookingOverlap(newBooking):
         Q(start__gt=newBooking.start, end__lt=newBooking.end) |
         Q(start=newBooking.start, end=newBooking.end) | # redundant?
         (Q(start__gte=newBooking.start, end__gte=newBooking.end) & Q(start__lt=newBooking.end)) |
-        (Q(start__lt=newBooking.start, end__lt=newBooking.end) & Q(end__gt=newBooking.start))
+        (Q(start__lte=newBooking.start, end__lte=newBooking.end) & Q(end__gt=newBooking.start))
     )
     return overlappingSlots
 
@@ -44,6 +44,7 @@ def findBookingOverlap(newBooking):
 # Also reorder bookings chronologiclly
 
 def roomBookingView(request):
+    # TODO - BOOKING STATUS IS PLACEHOLDER
     context = {"bookingStatus" : True}
     form = RoomBookingForm()
      # handling showing bookings for that day for that room
@@ -53,6 +54,7 @@ def roomBookingView(request):
         date = request.POST['date']
         start = request.POST['start']
         end = request.POST['end']
+
         initial_dict = {
             "roomName" : roomName,
             "date" : date,
@@ -60,9 +62,15 @@ def roomBookingView(request):
             "end" : end,
         }
         form = RoomBookingForm(initial=initial_dict)
-        
-        bookingsOnDateForRoom = RoomBooking.objects.filter(date=date,roomName=roomName)
+        form = RoomBookingForm(request.POST)
+        obj = form.save(commit=False)
+        obj.userName = request.user
+        overlappingBookings = findBookingOverlap(obj)
+        if (overlappingBookings.exists()):
+            context["bookingStatus"] = False
+        bookingsOnDateForRoom = RoomBooking.objects.filter(date=date,roomName=roomName).order_by("date", "start")
         context['bookingsOnDateForRoom'] = bookingsOnDateForRoom
+        
     
     # handling form submission
     elif (request.method == "POST"):

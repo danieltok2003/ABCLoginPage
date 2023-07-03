@@ -8,6 +8,13 @@
 <br>
     <div class="container py-4 boxColor boxShadow">
     <h2>Book Room</h2>
+    {% if errorMessage %}
+    <div class="container py-4 boxColor boxShadow" style="background-color:var(--fail)">
+        {{errorMessage}}
+    </div>
+    <br>
+    {% endif %}
+   
     <form method="POST" action="{% url 'roomBooking' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="hiddenUserName">Username:</label>

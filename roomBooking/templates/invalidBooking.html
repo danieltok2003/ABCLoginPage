@@ -3,7 +3,7 @@
 {% block title %}Invalid Booking{% endblock %}
 
 {% block content %}
-{% if user.is_staff %}
+{% if user.is_authenticated %}
 <br>
     <div class="container py-4 boxColor boxShadow">
     <h2>Invalid Booking</h2>
@@ -28,14 +28,6 @@
     </table>
     </div>
     
-<!-- authenticated but not admin -->
-{% elif user.is_authenticated %} 
-<br>
-<div class="container py-4 boxColor boxShadow">
-    <p>You are not an admin.</p>
-    <button><a href="{% url 'login' %}">Log In</a></button>
-</div>
-<!-- not authenticated -->
 {% else %}
 <br>
 <div class="container py-4 boxColor boxShadow">
