@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rooms.models import Room
 from django.contrib.auth.models import User
 from booking.models import RoomBooking,DeletedBookingModel
@@ -34,3 +34,7 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
         'deletedBookings' : deletedBookings,
     }
     return render(request, 'home.html', context)
+
+def clearDeletedBookingsUser(request):
+    DeletedBookingModel.objects.filter(userName=request.user.username).delete()
+    return redirect("home")

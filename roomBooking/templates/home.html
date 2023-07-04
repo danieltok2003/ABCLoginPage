@@ -33,6 +33,12 @@
             </tr>
             {% endfor %}
         </table>
+        <br>
+        <form method="POST" action="{% url 'clearDeletedBookingsUser' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button type="submit" name="ok">Ok</button>
+        </form>
+        
     </div>
     <br>
     {% endif %}
