@@ -95,7 +95,7 @@ def roomBookingView(request):
 
 def modifyBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)
-    bookingsForRoom = RoomBooking.objects.filter(roomName=booking.roomName).exclude(id=id)
+    bookingsForRoom = RoomBooking.objects.filter(roomName=booking.roomName).exclude(id=id).order_by("date", "start")
 
     
     data = {

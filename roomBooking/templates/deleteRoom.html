@@ -10,7 +10,7 @@
         <form action="deleteRoomRecord/{{ room.id }}" method="post">
             {% csrf_token %}
             <p>Are you sure you want to delete <b>Room {{room.roomName}}?</b></p>
-            <p>(Users who have made bookings of deleted rooms will be notified)</p>
+            <!-- <p>(Users who have made bookings of deleted rooms will be notified)</p> -->
         <input type="submit" value="Submit">
     </form>
     </div>
