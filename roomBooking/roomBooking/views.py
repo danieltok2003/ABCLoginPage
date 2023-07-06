@@ -3,7 +3,6 @@ from rooms.models import Room
 from django.contrib.auth.models import User
 from booking.models import RoomBooking,DeletedBookingModel
 from django.utils.timezone import localtime,now
-import datetime
 from django.db.models import Q
 
 # MASTER VIEW SETUP
@@ -23,6 +22,8 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
     passedBookings.delete()
     
     deletedBookings = DeletedBookingModel.objects.filter(userName=request.user.username)
+
+
     context = {
         # 'rooms' : roomData,
         # 'users' : userData,

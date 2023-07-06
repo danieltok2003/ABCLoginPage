@@ -11,6 +11,7 @@
 <div class="container">
     <br>
     <p><b>Welcome, {{ user.username }} </b></p>
+    {{todayDate}}
     <p>Dashboard last updated: {{ time }}</p>
     {% if deletedBookings|length > 0 %}
     <div class="container py-2 boxColor boxShadow" style="background-color:var(--fail)">

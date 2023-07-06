@@ -5,6 +5,7 @@ from .models import RoomBooking, DeletedBookingModel
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.exceptions import ValidationError
+from django.utils.timezone import localtime,now
 # Create your views here.
 
 
@@ -17,7 +18,10 @@ def bookingManagementView(request):
     else:
         userName = User.objects.get(username=request.user.username)
         bookings = RoomBooking.objects.filter(userName = userName)
-    context = {'roomBooking' :bookings.order_by("date", "start")}
+    context = {
+        'roomBooking' : bookings.order_by("date", "start"),
+        
+    }
     return render(request, "bookingManagement.html", context)
 
 
@@ -45,7 +49,9 @@ def findBookingOverlap(newBooking):
 
 def roomBookingView(request):
     # TODO - BOOKING STATUS IS PLACEHOLDER
-    context = {"bookingStatus" : True}
+    context = {
+            "bookingStatus" : True, 
+            }
     form = RoomBookingForm()
      # handling showing bookings for that day for that room
     if "checkAvailability" in request.POST:
