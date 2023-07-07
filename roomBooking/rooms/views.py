@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 def roomManagementView(request):
     rooms = Room.objects.all()
     context = {'rooms' : rooms}
-    return render(request, "roomManagement.html", context)
+    return render(request, "rooms/roomManagement.html", context)
 
 
 def createRoomView(request):
@@ -18,7 +18,7 @@ def createRoomView(request):
             form.save()
             return redirect("roomManagement")
         # TODO - VALIDATE IF UNIQUE ROOM NAME INPUTTED
-    return render(request, 'createRoom.html', {'form' : CreateRoomForm})
+    return render(request, 'rooms/createRoom.html', {'form' : CreateRoomForm})
 
 def getRooms(request):
     data = Room.objects.filter()
@@ -33,7 +33,7 @@ def modifyRooms(request, id):
     context = {
         'room' : room
     }
-    return render(request, 'modifyRoom.html', context)
+    return render(request, 'rooms/modifyRoom.html', context)
 
 def updateRoom(request,id):
     roomName = request.POST['roomName']
@@ -48,7 +48,7 @@ def updateRoom(request,id):
 def deleteRoomView(request,id):
     room = Room.objects.get(id=id)
     context = {'room': room}
-    return render(request, 'deleteRoom.html', context)
+    return render(request, 'rooms/deleteRoom.html', context)
 
 def deleteRoomRecord(request,id):
     room = Room.objects.get(id=id)
