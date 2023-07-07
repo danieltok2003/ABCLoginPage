@@ -5,16 +5,16 @@ Allows staff to book rooms for a given time and date and view room availability.
 
 ## Startup
 
-<p>Install requirements</p>
+Install requirements
 `pip install -r requirements.txt`
 
-<p>Create admin user and follow instructions</p>
+Create admin user and follow instructions
 `python manage.py createsuperuser`
 
-<p>Run server</p>
+Run server
 `python manage.py runserver`
 
-<p>Login with created admin account</p>
+Login with created admin account
 
 ## Known bugs
 **Major**
