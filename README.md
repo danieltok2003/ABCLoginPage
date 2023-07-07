@@ -1,16 +1,25 @@
 
 # ABC Room booking system
 
-Allows staff to book rooms for a given time and date. Provides admins with additional privileges such as managing rooms, bookings and users.
-sdasd
+Allows staff to book rooms for a given time and date and view room availability. Provides admins with additional privileges such as managing rooms, bookings and users.
 
+## Startup
+
+Install requirements
+`pip install -r requirements.txt`
+
+Create admin user
+`python manage.py createsuperuser`
+
+Run server
+`python manage.py runserver`
 
 ## Known bugs
 **Major**
 
-* Users can overlap booking time slots for the same room
+* ~Users can overlap booking time slots for the same room~
 * ~Users can put end time before start time when booking room~
-* Staff can access create room, book room, create user by hardcode entering url
+* ~Staff can access create room, book room, create user by hardcode entering url~
 
 **Minor**
 * Changing start time to be after end time when modifying booking after creation opens new ValidationError page instead of displaying on current page
@@ -30,9 +39,7 @@ sdasd
 
 
 
-## Startup
 
-Create django superuser and login as admin.
 
 
 
