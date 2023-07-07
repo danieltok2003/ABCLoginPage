@@ -44,7 +44,6 @@ def updateRoom(request,id):
     room.save()
     return redirect("roomManagement")
 
-
 def deleteRoomView(request,id):
     room = Room.objects.get(id=id)
     context = {'room': room}
