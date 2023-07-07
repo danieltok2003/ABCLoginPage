@@ -20,12 +20,12 @@ class SignUpView(generic.CreateView):
 def userManagementView(request):
     data = User.objects.all()
     context = {'users': data}
-    return render(request, "userManagement.html", context)
+    return render(request, "accounts/userManagement.html", context)
 
 def deleteUserView(request,id):
     user = User.objects.get(id=id)
     context = {'deletingUser' : user}
-    return render(request, "deleteUser.html", context)
+    return render(request, "accounts/deleteUser.html", context)
 
 def deleteUserRecord(request,id):
     user = User.objects.get(id=id)
