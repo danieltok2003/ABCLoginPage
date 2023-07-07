@@ -22,7 +22,7 @@ def bookingManagementView(request):
         'roomBooking' : bookings.order_by("date", "start"),
         
     }
-    return render(request, "bookingManagement.html", context)
+    return render(request, "booking/bookingManagement.html", context)
 
 
 def findBookingOverlap(newBooking):
@@ -90,14 +90,14 @@ def roomBookingView(request):
                     'overlappingBookings' : overlappingBookings,
                     'booking' : obj
                 }
-                return render(request, "invalidBooking.html", context)
+                return render(request, "booking/invalidBooking.html", context)
             else:
                 obj.save()
                 return redirect("bookingManagement")
             
    
     context['form'] = form
-    return render(request, "roomBooking.html", context)
+    return render(request, "booking/roomBooking.html", context)
 
 def modifyBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)
@@ -114,12 +114,12 @@ def modifyBookingView(request,id):
         'bookingsForRoomCount' : len(bookingsForRoom)
     }
     form = BookingModifyForm(initial=data)
-    return render(request, 'modifyBooking.html', {'form' : form, 'booking': booking, 'bookingsForRoom': bookingsForRoom})
+    return render(request, 'booking/modifyBooking.html', {'form' : form, 'booking': booking, 'bookingsForRoom': bookingsForRoom})
 
 def deleteBookingView(request,id):
     booking = RoomBooking.objects.get(id=id)
     context = {'booking' : booking}
-    return render(request, 'deleteBooking.html', context)
+    return render(request, 'booking/deleteBooking.html', context)
 
 def deleteBookingRecord(request, id):
     booking = RoomBooking.objects.get(id=id)
@@ -148,7 +148,7 @@ def modifyBookingRecord(request,id):
                     'overlappingBookings' : overlappingBookings,
                     'booking' : booking
                 }
-            return render(request, "invalidBooking.html", context)
+            return render(request, "booking/invalidBooking.html", context)
         else:
             booking.save()
     return redirect("bookingManagement")
