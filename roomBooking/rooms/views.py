@@ -13,10 +13,12 @@ def roomManagementView(request):
 
 def createRoomView(request):
     if request.POST:
-        form = CreateRoomForm(request.POST)
+        form = CreateRoomForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("roomManagement")
+        else:
+            return redirect("home")
         # TODO - VALIDATE IF UNIQUE ROOM NAME INPUTTED
     return render(request, 'rooms/createRoom.html', {'form' : CreateRoomForm})
 

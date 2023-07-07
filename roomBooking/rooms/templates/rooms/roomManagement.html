@@ -19,7 +19,7 @@
         {% for room in rooms %}
             <tr>
                 <td>{{room.roomName}}</td>
-                <td><img src="{{ room.roomImage.url }}"></td>
+                <td><img style="width:150px" src="{{ room.roomImage.url }}"></td>
                 <td>{{room.capacity}}</td>
                 <td><a href="modify/{{room.id}}"><i class="bi bi-pencil"></i></a></td>
                 <td><a href="deleteRoom/{{room.id}}"><i class="bi bi-x-octagon"></i></a></td>
