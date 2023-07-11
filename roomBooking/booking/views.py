@@ -42,8 +42,6 @@ def findBookingOverlap(newBooking):
     )
     return overlappingSlots
 
-
-# TODO - CHECK IF BOOKING IS GOOD OR BAD ON "Check availability button press"
 # take into account roomname, date, start, end
 # Also reorder bookings chronologiclly
 
@@ -130,8 +128,6 @@ def deleteBookingRecord(request, id):
     DeletedBookingModel.objects.create(roomName=booking.roomName, date=booking.date, start=booking.start, end=booking.end, userName=booking.userName)
     booking.delete()
     return redirect("bookingManagement")
-
-    
 
 
 def modifyBookingRecord(request,id):

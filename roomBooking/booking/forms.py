@@ -6,6 +6,7 @@ from django.db import models
 from datetimewidget.widgets import DateWidget, TimeWidget
 from django.core.exceptions import ValidationError
 from django.utils.timezone import localtime,now
+import datetime
 
 # roomName = models.ForeignKey('rooms.Room', on_delete=models.CASCADE)
 # userName = models.ForeignKey(User, on_delete=models.CASCADE, default="", name="userName")
@@ -13,8 +14,10 @@ from django.utils.timezone import localtime,now
 # start = models.TimeField()
 # end = models.TimeField()
 # bookingDeleteMsg = models.CharField(default="")
+todayDate = datetime.datetime.now()
 dateOptions = {
-            'startDate' : str(localtime(now()).date()), # converts to yyyy/mm/dd format,,
+            'startDate' : todayDate.strftime("%Y-%m-%d")
+            # 'startDate' : str(localtime(now()).date()), # converts to yyyy/mm/dd format,,
         }
 
 
