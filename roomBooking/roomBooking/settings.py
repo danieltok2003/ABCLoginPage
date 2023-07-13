@@ -96,35 +96,20 @@ WSGI_APPLICATION = 'roomBooking.wsgi.application'
 # }
 
 # https://github.com/microsoft/mssql-django
-# db = dbconn()
-# DATABASES = {
-#     "default": {
-#         "ENGINE": db.engine,
-#         "NAME": db.name,
-#         "USER": db.user,
-#         "PASSWORD": db.password,
-#         "HOST": db.host,
-#         # "PORT": db.port,
-#         "OPTIONS": {
-#             "driver": db.driver,
-#         },
-#     }
-# }
+db = dbconn()
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
-        "NAME": "ABCRoomBooking",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "MY-VT7638\SQLEXPRESS",
+        "ENGINE": db.engine,
+        "NAME": db.name,
+        "USER": db.user,
+        "PASSWORD": db.password,
+        "HOST": db.host,
         # "PORT": db.port,
         "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
+            "driver": db.driver,
         },
     }
 }
-
-
 
 
 
