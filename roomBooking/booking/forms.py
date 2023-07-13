@@ -16,8 +16,8 @@ import datetime
 # bookingDeleteMsg = models.CharField(default="")
 todayDate = datetime.datetime.now()
 dateOptions = {
-            'startDate' : todayDate.strftime("%Y-%m-%d")
-            # 'startDate' : str(localtime(now()).date()), # converts to yyyy/mm/dd format,,
+            'startDate' : todayDate.strftime("%Y-%m-%d") # converts to yyyy/mm/dd format,
+            # 'startDate' : str(localtime(now()).date()), 
         }
 
 
@@ -29,7 +29,6 @@ dateOptions = {
 class RoomBookingForm(forms.ModelForm):
     
     class Meta:
-        todayDate = localtime(now()).date()
         model = RoomBooking
         fields = ["roomName", "date", "start", "end"]
         widgets = {
