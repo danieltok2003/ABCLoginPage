@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from .db_conn import dbconn
 
 
 
@@ -94,15 +95,36 @@ WSGI_APPLICATION = 'roomBooking.wsgi.application'
 #     }
 # }
 
+# https://github.com/microsoft/mssql-django
+# db = dbconn()
+# DATABASES = {
+#     "default": {
+#         "ENGINE": db.engine,
+#         "NAME": db.name,
+#         "USER": db.user,
+#         "PASSWORD": db.password,
+#         "HOST": db.host,
+#         # "PORT": db.port,
+#         "OPTIONS": {
+#             "driver": db.driver,
+#         },
+#     }
+# }
 DATABASES = {
-     'default': {
-        'NAME': 'my_database',
-        'ENGINE': 'sqlserver_ado',
-        'HOST': 'dbserver\\ss2012',
-        'USER': '',
-        'PASSWORD': '',
+    "default": {
+        "ENGINE": "mssql",
+        "NAME": "ABCRoomBooking",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "MY-VT7638\SQLEXPRESS",
+        # "PORT": db.port,
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+        },
     }
 }
+
+
 
 
 
