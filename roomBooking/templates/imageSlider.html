@@ -10,19 +10,21 @@
 
     <title>Hello, world!</title>
     <style>
-      .carousel-item img {
-        height:300px !important;
+      .carousel, .carousel-item img {
+        height:400px !important; 
+        width:50%;
       }
+      
     </style>
   </head>
   <body>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          {% for n in range(rooms|length) %}
+          {% for room in rooms %}
             {% if forloop.first %}
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="{{loop.index0}}" class="active"></li>
             {% else %}
-              <li data-target="#carouselExampleIndicators" data-slide-to="{{n}}"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="{{loop.index0}}"></li>
             {% endif%}
           {% endfor %}
           <!-- <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

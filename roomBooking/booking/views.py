@@ -53,7 +53,8 @@ def roomBookingView(request):
     context = {
             "bookingStatus" : True, 
             "rooms" : rooms,
-            }
+            "numRooms" : len(rooms),
+    }
     form = RoomBookingForm()
      # handling showing bookings for that day for that room
     if "checkAvailability" in request.POST:
