@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.exceptions import ValidationError
 from django.utils.timezone import localtime,now
+from rooms.models import Room
 # Create your views here.
 
 
@@ -47,8 +48,11 @@ def findBookingOverlap(newBooking):
 
 def roomBookingView(request):
     # TODO - BOOKING STATUS IS PLACEHOLDER
+    rooms = Room.objects.all() # just used to get room images - is there more efficient way?
+
     context = {
             "bookingStatus" : True, 
+            "rooms" : rooms,
             }
     form = RoomBookingForm()
      # handling showing bookings for that day for that room

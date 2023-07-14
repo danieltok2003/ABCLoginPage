@@ -37,7 +37,7 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
         }
         return render(request, 'home.html', context)
     else:
-        return redirect("login")
+        return redirect("login") # if user not authenticated
 
 def clearDeletedBookingsUser(request):
     DeletedBookingModel.objects.filter(userName=request.user.username).delete()

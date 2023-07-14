@@ -6,8 +6,10 @@
 <!-- is staff or is admin -->
 {% if user.is_authenticated %}
 <br>
+    
     <div class="container py-4 boxColor boxShadow">
         <h2>Book Room</h2>
+        <br>
     {% if errorMessage %}
     <div class="container py-4 boxColor boxShadow" style="background-color:var(--fail)">
         {{errorMessage}}
@@ -22,7 +24,12 @@
         
         <br>
         <br>
+       
         {{ form.as_p }}
+        {% include 'imageSlider.html' with rooms=rooms %}
+        <br>
+        <br>
+        
         <button type="submit" name="checkAvailability">Check availability</button>
         {% if bookingsOnDateForRoom|length == 0%}
         <br>
@@ -66,6 +73,8 @@
         <button type="submit" name="makeBooking" value="makeBooking">Make booking</button>
     </form>
 </div>
+    
+
 {% else %}
 <br>
 <div class="container py-4 boxColor boxShadow">
