@@ -14,11 +14,7 @@ import datetime
 # start = models.TimeField()
 # end = models.TimeField()
 # bookingDeleteMsg = models.CharField(default="")
-todayDate = datetime.datetime.now()
-dateOptions = {
-            'startDate' : todayDate.strftime("%Y-%m-%d") # converts to yyyy/mm/dd format,
-            # 'startDate' : str(localtime(now()).date()), 
-        }
+
 
 
 # str(localtime(now()).time())[:-10] # removes miliseconds and seconds,
@@ -29,6 +25,11 @@ dateOptions = {
 class RoomBookingForm(forms.ModelForm):
     
     class Meta:
+        todayDate = datetime.datetime.now()
+        dateOptions = {
+            'startDate' : todayDate.strftime("%Y-%m-%d") # converts to yyyy/mm/dd format,
+            # 'startDate' : str(localtime(now()).date()), 
+        }
         model = RoomBooking
         fields = ["roomName", "date", "start", "end"]
         widgets = {
@@ -40,6 +41,11 @@ class RoomBookingForm(forms.ModelForm):
 
 class BookingModifyForm(forms.ModelForm):
     class Meta:
+        todayDate = datetime.datetime.now()
+        dateOptions = {
+            'startDate' : todayDate.strftime("%Y-%m-%d") # converts to yyyy/mm/dd format,
+            # 'startDate' : str(localtime(now()).date()), 
+        }
         model = RoomBooking
         fields = ["date", "start", "end"]
         widgets = {
