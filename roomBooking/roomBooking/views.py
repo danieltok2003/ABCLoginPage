@@ -11,12 +11,13 @@ def setupHomePage(request): # calls room view, user view, bookings view to displ
     # userData = User.objects.all()
     if request.user.is_authenticated:
         roomBookingData = RoomBooking.objects.all()
+        roomData = Room.objects.all()
 
         time = localtime(now())
     
         numBookings = roomBookingData.count()
         numMeetingsNow = roomBookingData.filter(date=time.date(), start__lte=time.time(), end__gte=time.time()).count()
-        numRoomsAvailable = roomBookingData.count() - numMeetingsNow
+        numRoomsAvailable = roomData.count() - numMeetingsNow
 
         # if the booking date has passed or the booking is today but the end time has passed
         passedBookings = roomBookingData.filter(Q(date__lt=time.date()) | Q(date=time.date(), end__lt=time.time()))
